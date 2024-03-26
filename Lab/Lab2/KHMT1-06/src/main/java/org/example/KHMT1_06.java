@@ -19,8 +19,10 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.filecache.DistributedCache;
 
 public class KHMT1_06 {
+
     public static class TokenizerMapper
             extends Mapper<Object, Text, Text, IntWritable>{
+
 
         private final static IntWritable one = new IntWritable(1);
         private Text word = new Text();
@@ -46,7 +48,26 @@ public class KHMT1_06 {
         ) throws IOException, InterruptedException {
 /*            StringTokenizer itr = new StringTokenizer(value.toString());
             while (itr.hasMoreTokens()) {
-                word.set(itr.nextToken());
+                String tmp_word = itr.nextToken();
+                if(tmp_word.charAt(0) == '\"'){
+                    tmp_word = tmp_word.replace("\"", "");
+                }
+                if(tmp_word.charAt(tmp_word.length() - 1) == '.') {
+                    tmp_word = tmp_word.replace(".", "");
+                }
+                if(tmp_word.charAt(tmp_word.length() - 1) == '"') {
+                    tmp_word = tmp_word.replace("\"", "");
+                }
+                if(tmp_word.charAt(tmp_word.length() - 1) == '\'') {
+                    tmp_word = tmp_word.replace("'", "");
+                }
+                if(tmp_word.charAt(tmp_word.length() - 1) == ',') {
+                    tmp_word = tmp_word.replace(",", "");
+                }
+//                int index = fileName.indexOf(":");
+//                tmp_word += "\t";
+//                tmp_word += fileName.substring(0, index);
+                word.set(tmp_word);
                 context.write(word, one);
             }*/
             StringTokenizer itr = new StringTokenizer(value.toString().toLowerCase());
