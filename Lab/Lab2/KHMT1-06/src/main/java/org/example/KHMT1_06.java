@@ -212,10 +212,26 @@ public abstract class KHMT1_06 extends Configured implements Tool {
         job.setReducerClass(Reduce.class);
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(IntWritable.class);
-        job.setOutputFormatClass(MTXOutputFormat.class);
+        job.setOutputFormatClass(CustomFileOutputFormat.class);
+        //job.setOutputFormatClass(MTXOutputFormat.class);
         System.exit(job.waitForCompletion(true) ? 0 : 1);
     }
-    public static class MTXOutputFormat extends FileOutputFormat<Text, IntWritable> {
+/*    public static class CustomFileOutputFormat<K, V> extends TextOutputFormat<K, V> {
+        @Override
+        public Path getDefaultWorkFile(TaskAttemptContext context, String extension) throws IOException {
+            // Customize the file name here
+            String customFileName = "task_1_1" + context.getTaskAttemptID().getTaskID().getId();
+            if (extension != null) {
+                customFileName += extension;
+            }
+
+            // Create a new Path object with the custom file name
+            Path outputDir = getOutputPath(context);
+            return new Path(outputDir, customFileName);
+        }
+    }*/
+
+/*    public static class MTXOutputFormat extends FileOutputFormat<Text, IntWritable> {
 
         @Override
         public RecordWriter<Text, IntWritable> getRecordWriter(TaskAttemptContext job)
@@ -224,6 +240,38 @@ public abstract class KHMT1_06 extends Configured implements Tool {
             Path outputFilePath = getDefaultWorkFile(job, ".mtx");
             FileSystem fs = outputFilePath.getFileSystem(conf);
             FSDataOutputStream fileOut = fs.create(outputFilePath, false);
+
+            return new RecordWriter<Text, IntWritable>() {
+                @Override
+                public void write(Text key, IntWritable value) throws IOException, InterruptedException {
+                    String line = key.toString() + " " + value.toString() + "\n"; // Write key-value pair as a line
+                    fileOut.writeBytes(line);
+                }
+
+                @Override
+                public void close(TaskAttemptContext context) throws IOException, InterruptedException {
+                    fileOut.close();
+                }
+            };
+        }
+    }*/
+
+    public static class CustomFileOutputFormat extends FileOutputFormat<Text, IntWritable> {
+
+        @Override
+        public RecordWriter<Text, IntWritable> getRecordWriter(TaskAttemptContext job)
+                throws IOException, InterruptedException {
+            Configuration conf = job.getConfiguration();
+            // Customizing the file name by using the job name and task id
+            //String customFileName = "task_1_1" + job.getTaskAttemptID().getTaskID().getId() + ".mtx";
+            String customFileName = "task_1_1.mtx";
+            // Customize the output directory and file name as needed
+            Path outputDir = FileOutputFormat.getOutputPath(job);
+            Path fullOutputPath = new Path(outputDir, customFileName);
+
+            // Create the file in the file system
+            FileSystem fs = fullOutputPath.getFileSystem(conf);
+            FSDataOutputStream fileOut = fs.create(fullOutputPath, false);
 
             return new RecordWriter<Text, IntWritable>() {
                 @Override

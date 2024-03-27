@@ -8,12 +8,9 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/KHMT1-06/src/main/java/org/example/KHMT1_06.java" beforeDir="false" afterPath="$PROJECT_DIR$/KHMT1-06/src/main/java/org/example/KHMT1_06.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/KHMT1-06/target/KHMT1-06-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/KHMT1-06/target/KHMT1-06-1.0-SNAPSHOT.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KHMT1-06/target/classes/org/example/KHMT1_06$IntSumReducer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/KHMT1-06/target/classes/org/example/KHMT1_06$TokenizerMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/KHMT1-06/target/classes/org/example/KHMT1_06$CustomOutputFormat.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/KHMT1-06/target/classes/org/example/KHMT1_06.class" beforeDir="false" afterPath="$PROJECT_DIR$/KHMT1-06/target/classes/org/example/KHMT1_06.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KHMT1-06/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/KHMT1-06/target/maven-archiver/pom.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/KHMT1-06/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/KHMT1-06/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KHMT1-06/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/KHMT1-06/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
