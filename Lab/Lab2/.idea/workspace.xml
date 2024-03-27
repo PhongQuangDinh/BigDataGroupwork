@@ -5,17 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8b492c33-ef4c-4f78-b527-0650aa6562cf" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/KHMT1-06/src/main/java/task_1_2/task_1_2.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/KHMT1-06/src/main/java/task_1_3/task_1_3.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/KHMT1-06/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/KHMT1-06/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KHMT1-06/target/KHMT1-06-1.0-SNAPSHOT.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/KHMT1-06/target/classes/org/example/KHMT1_06$MTXOutputFormat$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/KHMT1-06/target/classes/org/example/KHMT1_06$MTXOutputFormat.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/KHMT1-06/target/classes/org/example/KHMT1_06.class" beforeDir="false" afterPath="$PROJECT_DIR$/KHMT1-06/target/classes/org/example/KHMT1_06.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KHMT1-06/src/main/java/task_1_2/task_1_2.java" beforeDir="false" afterPath="$PROJECT_DIR$/KHMT1-06/src/main/java/task_1_2/task_1_2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_2/task_1_2.class" beforeDir="false" afterPath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_2/task_1_2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/KHMT1-06/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/KHMT1-06/target/maven-archiver/pom.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/KHMT1-06/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/KHMT1-06/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/KHMT1-06/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/KHMT1-06/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KHMT1-06/target/task_1_2.java-1.0-SNAPSHOT.jar" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,6 +48,9 @@
     "Maven.KHMT1-06 [install].executor": "Run",
     "Maven.task_1_2.java [clean].executor": "Run",
     "Maven.task_1_2.java [install].executor": "Run",
+    "Maven.task_1_3.java [clean].executor": "Run",
+    "Maven.task_1_3.java [install\\].executor": "Run",
+    "Maven.task_1_3.java [install].executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
@@ -62,6 +63,7 @@
   <component name="RunAnythingCache">
     <option name="myCommands">
       <command value="mvn clean" />
+      <command value="mvn install\" />
       <command value="mvn install" />
     </option>
   </component>
