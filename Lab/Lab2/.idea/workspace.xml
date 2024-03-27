@@ -5,17 +5,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8b492c33-ef4c-4f78-b527-0650aa6562cf" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/KHMT1-06/src/main/java/task_1_2/task_1_2.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KHMT1-06/src/main/java/org/example/KHMT1_06.java" beforeDir="false" afterPath="$PROJECT_DIR$/KHMT1-06/src/main/java/org/example/KHMT1_06.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KHMT1-06/target/KHMT1-06-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/KHMT1-06/target/KHMT1-06-1.0-SNAPSHOT.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KHMT1-06/target/classes/org/example/KHMT1_06$CustomOutputFormat.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/KHMT1-06/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/KHMT1-06/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KHMT1-06/target/KHMT1-06-1.0-SNAPSHOT.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/KHMT1-06/target/classes/org/example/KHMT1_06$MTXOutputFormat$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/KHMT1-06/target/classes/org/example/KHMT1_06$MTXOutputFormat.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/KHMT1-06/target/classes/org/example/KHMT1_06.class" beforeDir="false" afterPath="$PROJECT_DIR$/KHMT1-06/target/classes/org/example/KHMT1_06.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KHMT1-06/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/KHMT1-06/target/maven-archiver/pom.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/KHMT1-06/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/KHMT1-06/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KHMT1-06/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/KHMT1-06/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
@@ -31,19 +43,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Maven.KHMT1-06 [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.KHMT1-06 [install].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/gitproj/BigDataGroupwork/Lab/Lab2&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Maven.KHMT1-06 [clean].executor": "Run",
+    "Maven.KHMT1-06 [install].executor": "Run",
+    "Maven.task_1_2.java [clean].executor": "Run",
+    "Maven.task_1_2.java [install].executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/gitproj/BigDataGroupwork/Lab/Lab2"
   }
-}</component>
+}]]></component>
   <component name="RunAnythingCache">
     <option name="myCommands">
       <command value="mvn clean" />
