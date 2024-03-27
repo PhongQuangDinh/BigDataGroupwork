@@ -189,33 +189,7 @@ public abstract class KHMT1_06 extends Configured implements Tool {
 
     private static final Logger LOG = Logger.getLogger(KHMT1_06.class);
 
-    public static void main(String[] args) throws Exception {
-        Configuration conf = new Configuration();
-        Job job = Job.getInstance(conf, "wordcount");
-        FileSystem fs = FileSystem.get(conf);
-        if(fs.exists(new Path(args[1]))){
-            fs.delete(new Path(args[1]),true);
-        }
-        for (int i = 0; i < args.length; i += 1) {
-            if ("-skip".equals(args[i])) {
-                job.getConfiguration().setBoolean("wordcount.skip.patterns", true);
-                i += 1;
-                job.addCacheFile(new Path(args[i]).toUri());
-                LOG.info("Added file to the distributed cache: " + args[i]);
-            }
-        }
-        job.setJarByClass(KHMT1_06.class);
-        FileInputFormat.addInputPath(job, new Path(args[0]));
-        FileOutputFormat.setOutputPath(job, new Path(args[1]));
-        job.setMapperClass(Map.class);
-        job.setCombinerClass(Reduce.class);
-        job.setReducerClass(Reduce.class);
-        job.setOutputKeyClass(Text.class);
-        job.setOutputValueClass(IntWritable.class);
-        job.setOutputFormatClass(CustomFileOutputFormat.class);
-        //job.setOutputFormatClass(MTXOutputFormat.class);
-        System.exit(job.waitForCompletion(true) ? 0 : 1);
-    }
+
 /*    public static class CustomFileOutputFormat<K, V> extends TextOutputFormat<K, V> {
         @Override
         public Path getDefaultWorkFile(TaskAttemptContext context, String extension) throws IOException {
@@ -367,6 +341,34 @@ public abstract class KHMT1_06 extends Configured implements Tool {
             context.write(word, new IntWritable(sum));
         }
 
+    }
+
+    public static void main(String[] args) throws Exception {
+        Configuration conf = new Configuration();
+        Job job = Job.getInstance(conf, "wordcount");
+        FileSystem fs = FileSystem.get(conf);
+        if(fs.exists(new Path(args[1]))){
+            fs.delete(new Path(args[1]),true);
+        }
+        for (int i = 0; i < args.length; i += 1) {
+            if ("-skip".equals(args[i])) {
+                job.getConfiguration().setBoolean("wordcount.skip.patterns", true);
+                i += 1;
+                job.addCacheFile(new Path(args[i]).toUri());
+                LOG.info("Added file to the distributed cache: " + args[i]);
+            }
+        }
+        job.setJarByClass(KHMT1_06.class);
+        FileInputFormat.addInputPath(job, new Path(args[0]));
+        FileOutputFormat.setOutputPath(job, new Path(args[1]));
+        job.setMapperClass(Map.class);
+        job.setCombinerClass(Reduce.class);
+        job.setReducerClass(Reduce.class);
+        job.setOutputKeyClass(Text.class);
+        job.setOutputValueClass(IntWritable.class);
+        job.setOutputFormatClass(CustomFileOutputFormat.class);
+        //job.setOutputFormatClass(MTXOutputFormat.class);
+        System.exit(job.waitForCompletion(true) ? 0 : 1);
     }
 }
 
