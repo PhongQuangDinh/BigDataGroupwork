@@ -1,4 +1,5 @@
 task_1_4\wordsPerFile$IntSumReducer.class
+task_2_2\KMean2_2.class
 task_1_2\task_1_2$CustomFileOutputFormat$1.class
 task_1_4\filesPerWord$CustomFileOutputFormat.class
 task_1_4\wordsPerFile.class
@@ -9,6 +10,7 @@ task_1_4\tf$Reduce.class
 task_1_4\tf_filesPerWord$Map.class
 task_1_4\filesNum$Map.class
 org\example\KHMT1_06$Reduce.class
+task_2_2\KMean2_2$KMeansMapper.class
 task_1_4\tf$CustomFileOutputFormat$1.class
 task_1_4\wordsPerFile$CustomFileOutputFormat.class
 task_1_4\filesPerWord$CustomFileOutputFormat$1.class
