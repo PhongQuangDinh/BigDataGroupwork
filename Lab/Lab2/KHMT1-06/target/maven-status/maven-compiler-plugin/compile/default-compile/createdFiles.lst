@@ -1,10 +1,13 @@
 task_1_4\wordsPerFile$IntSumReducer.class
 task_1_2\task_1_2$CustomFileOutputFormat$1.class
 task_1_4\wordsPerFile.class
+task_1_4\tf.class
 task_1_4\word_file$IntSumReducer.class
 task_1_3\task_1_3$TermFrequencyMapper.class
 task_1_3\task_1_3.class
+task_1_4\tf$Reduce.class
 org\example\KHMT1_06$Reduce.class
+task_1_4\tf$CustomFileOutputFormat$1.class
 task_1_4\wordsPerFile$CustomFileOutputFormat.class
 task_1_3\task_1_3$CustomFileOutputFormat.class
 task_1_4\task_1_4$TokenizerMapper.class
@@ -13,10 +16,12 @@ org\example\KHMT1_06.class
 task_1_3\task_1_3$IntSumReducer.class
 org\example\KHMT1_06$Map.class
 task_1_4\task_1_4.class
+task_1_4\test.class
 task_1_2\task_1_2$CustomFileOutputFormat.class
 task_1_2\task_1_2$TokenizerMapper.class
 task_1_4\task_1_4$Combiner.class
 task_1_4\word_file$CustomFileOutputFormat$1.class
+task_1_4\tf$Map.class
 task_1_4\word_file.class
 task_1_4\wordsPerFile$CustomFileOutputFormat$1.class
 task_1_4\task_1_4$CustomFileOutputFormat$1.class
@@ -28,3 +33,4 @@ org\example\KHMT1_06$CustomFileOutputFormat$1.class
 task_1_4\wordsPerFile$TokenizerMapper.class
 org\example\KHMT1_06$CustomFileOutputFormat.class
 task_1_4\task_1_4$IntSumReducer.class
+task_1_4\tf$CustomFileOutputFormat.class

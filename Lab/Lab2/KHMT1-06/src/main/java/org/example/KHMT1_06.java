@@ -281,13 +281,12 @@ public abstract class KHMT1_06 extends Configured implements Tool {
             }
             Configuration config = context.getConfiguration();
             this.caseSensitive = config.getBoolean("wordcount.case.sensitive", false);
-//parseSkipFile method
+
             if (config.getBoolean("wordcount.skip.patterns", false)) {
                 URI[] localPaths = context.getCacheFiles();
                 parseSkipFile(localPaths[0]);
             }
         }
-        //Getting file from the HDFS and to read until EOL
         private void parseSkipFile(URI patternsURI) {
             LOG.info("Added file to the distributed cache: " + patternsURI);
             try {
@@ -367,7 +366,6 @@ public abstract class KHMT1_06 extends Configured implements Tool {
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(IntWritable.class);
         job.setOutputFormatClass(CustomFileOutputFormat.class);
-        //job.setOutputFormatClass(MTXOutputFormat.class);
         System.exit(job.waitForCompletion(true) ? 0 : 1);
     }
 }
