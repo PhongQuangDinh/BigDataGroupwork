@@ -1,26 +1,29 @@
 package task_1_4;
+
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FSDataOutputStream;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
-import org.apache.hadoop.io.*;
+import org.apache.hadoop.io.IntWritable;
+import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.*;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.input.FileSplit;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
+import org.apache.hadoop.util.StringUtils;
+import org.apache.log4j.Logger;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URI;
+import java.util.HashSet;
 import java.util.Hashtable;
-import java.util.List;
+import java.util.Set;
+import java.util.regex.Pattern;
 
-import org.apache.hadoop.util.StringUtils;
-import org.apache.log4j.Logger;
-
-public class task_1_4 {
+public class tf_filesPerWord {
     private static final Logger LOG = Logger.getLogger(tf.class);
     public static class CustomFileOutputFormat extends FileOutputFormat<Text, Text> {
 
@@ -28,7 +31,7 @@ public class task_1_4 {
         public RecordWriter<Text, Text> getRecordWriter(TaskAttemptContext job)
                 throws IOException, InterruptedException {
             Configuration conf = job.getConfiguration();
-            String customFileName = "task_1_4.mtx";
+            String customFileName = "tf_filesPerWord.mtx";
             Path outputDir = FileOutputFormat.getOutputPath(job);
             Path fullOutputPath = new Path(outputDir, customFileName);
             FileSystem fs = fullOutputPath.getFileSystem(conf);
@@ -52,7 +55,7 @@ public class task_1_4 {
     public static class Map extends Mapper<Object, Text, Text, Text> {
 //        private Text word = new Text();
         private String input;
-        static Hashtable<String, Integer> file_num = new Hashtable<>();
+        private Hashtable<String, Integer> file_num = new Hashtable<>();
 
         protected void setup(Mapper.Context context)
                 throws IOException,
@@ -86,20 +89,16 @@ public class task_1_4 {
         public void map(Object offset, Text lineText, Context context)
                 throws IOException, InterruptedException {
             String[] parts = lineText.toString().split("\\s+");
-            context.write(new Text(parts[0] + " "+parts[1]), new Text(parts[2] + " " + parts[3]+ " " + parts[4] + " " + file_num.get("file")));
+            if(file_num.containsKey(parts[0])) {
+                context.write(new Text(parts[0] + " "+parts[1]), new Text(parts[2] + " " + parts[3] + " "+ file_num.get(parts[0])));
+            }
         }
     }
 
     public static class Reduce extends Reducer<Text, Text, Text, Text> {
         public void reduce(Text key, Text value, Context context)
                 throws IOException, InterruptedException {
-            String[] parts = value.toString().split("\\s+");
-            int frequency = Integer.parseInt(parts[0]);
-            int wordsPerFile = Integer.parseInt(parts[1]);
-            int filesPerWord = Integer.parseInt(parts[2]);
-            int filesNum = Integer.parseInt(parts[3]);
-            float tf_idf = (float)((frequency/wordsPerFile) * Math.log10(filesNum/filesPerWord));
-            context.write(key, new Text(tf_idf+""));
+            context.write(key, value);
         }
 
     }
@@ -119,7 +118,7 @@ public class task_1_4 {
                 LOG.info("Added file to the distributed cache: " + args[i]);
             }
         }
-        job.setJarByClass(task_1_4.class);
+        job.setJarByClass(tf_filesPerWord.class);
         FileInputFormat.addInputPath(job, new Path(args[0]));
         FileOutputFormat.setOutputPath(job, new Path(args[1]));
         job.setMapperClass(Map.class);
@@ -127,6 +126,7 @@ public class task_1_4 {
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(Text.class);
         job.setOutputFormatClass(CustomFileOutputFormat.class);
+        //job.setOutputFormatClass(MTXOutputFormat.class);
         System.exit(job.waitForCompletion(true) ? 0 : 1);
     }
 }

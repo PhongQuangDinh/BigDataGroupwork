@@ -13,7 +13,6 @@ import org.apache.hadoop.mapreduce.lib.input.FileSplit;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.util.StringUtils;
 import org.apache.log4j.Logger;
-import org.example.KHMT1_06;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -21,26 +20,27 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.net.URI;
 import java.util.HashSet;
+import java.util.Hashtable;
 import java.util.Set;
 import java.util.regex.Pattern;
 
 public class tf {
-    private static final Logger LOG = Logger.getLogger(KHMT1_06.class);
-    public static class CustomFileOutputFormat extends FileOutputFormat<Text, IntWritable> {
+    private static final Logger LOG = Logger.getLogger(tf.class);
+    public static class CustomFileOutputFormat extends FileOutputFormat<Text, Text> {
 
         @Override
-        public RecordWriter<Text, IntWritable> getRecordWriter(TaskAttemptContext job)
+        public RecordWriter<Text, Text> getRecordWriter(TaskAttemptContext job)
                 throws IOException, InterruptedException {
             Configuration conf = job.getConfiguration();
-            String customFileName = "task_1_1.mtx";
+            String customFileName = "tf.mtx";
             Path outputDir = FileOutputFormat.getOutputPath(job);
             Path fullOutputPath = new Path(outputDir, customFileName);
             FileSystem fs = fullOutputPath.getFileSystem(conf);
             FSDataOutputStream fileOut = fs.create(fullOutputPath, false);
 
-            return new RecordWriter<Text, IntWritable>() {
+            return new RecordWriter<Text, Text>() {
                 @Override
-                public void write(Text key, IntWritable value) throws IOException, InterruptedException {
+                public void write(Text key, Text value) throws IOException, InterruptedException {
                     String line = key.toString() + " " + value.toString() + "\n"; // Write key-value pair as a line
                     fileOut.writeBytes(line);
                 }
@@ -53,14 +53,11 @@ public class tf {
         }
     }
 
-    public static class Map extends Mapper<LongWritable, Text, Text, IntWritable> {
-        private final static IntWritable one = new IntWritable(1);
+    public static class Map extends Mapper<Object, Text, Text, Text> {
         private Text word = new Text();
-        private boolean caseSensitive = false;
-
         private String input;
+        private Hashtable<String, Integer> file_num = new Hashtable<>();
         private Set<String> patternsToSkip = new HashSet<String>(); //stop words to be removed from the final result
-        private static final Pattern WORD_BOUNDARY = Pattern.compile("\\s*\\b\\s*");
 
         protected void setup(Mapper.Context context)
                 throws IOException,
@@ -71,21 +68,21 @@ public class tf {
                 this.input = context.getInputSplit().toString();
             }
             Configuration config = context.getConfiguration();
-            this.caseSensitive = config.getBoolean("wordcount.case.sensitive", false);
-//parseSkipFile method
-            if (config.getBoolean("wordcount.skip.patterns", false)) {
+            if (config.getBoolean("file", false)) {
                 URI[] localPaths = context.getCacheFiles();
-                parseSkipFile(localPaths[0]);
+                addFile(localPaths[0]);
             }
         }
-        //Getting file from the HDFS and to read until EOL
-        private void parseSkipFile(URI patternsURI) {
+        private void addFile(URI patternsURI) {
             LOG.info("Added file to the distributed cache: " + patternsURI);
             try {
                 BufferedReader fis = new BufferedReader(new FileReader(new File(patternsURI.getPath()).getName()));
                 String pattern;
                 while ((pattern = fis.readLine()) != null) {
-                    patternsToSkip.add(pattern);
+//                    file_num.add(pattern);
+                    String[] parts = pattern.toString().split("\\s+");
+
+                    file_num.put(parts[0], Integer.parseInt(parts[1]));
                 }
             } catch (IOException ioe) {
                 System.err.println("Caught exception while parsing the cached file '"
@@ -93,43 +90,23 @@ public class tf {
             }
         }
 
-        public void map(LongWritable offset, Text lineText, Context context)
+        public void map(Object offset, Text lineText, Context context)
                 throws IOException, InterruptedException {
-            String fileName = context.getInputSplit().toString().split("/")[context.getInputSplit().toString().split("/").length - 2] + '/' + context.getInputSplit().toString().split("/")[context.getInputSplit().toString().split("/").length - 1];
-
-            String line = lineText.toString();
-            if (!caseSensitive) {
-                line = line.toLowerCase();
-            }
-            Text currentWord = new Text();
-            for (String word : WORD_BOUNDARY.split(line)) {
-                if (word.isEmpty()) {
-                    continue;
-                }
-                if((word.charAt(0) < 48 || (word.charAt(0) > 57 && word.charAt(0) < 97) || word.charAt(0) > 122)  ) {
-                    continue;
-                }
-                if (patternsToSkip.contains(word.toLowerCase())) {
-                    continue;
-                }
-                int index = fileName.indexOf(":");
-                word += " ";
-                word += fileName.substring(0, index);
-                currentWord = new Text(word);
-                context.write(currentWord,one);
+            String[] parts = lineText.toString().split("\\s+");
+            if(file_num.containsKey(parts[1])) {
+                context.write(new Text(parts[0] + " "+parts[1]), new Text(parts[2] + " "+ file_num.get(parts[1])));
             }
         }
     }
 
-    public static class Reduce extends Reducer<Text, IntWritable, Text, IntWritable> {
-        @Override
-        public void reduce(Text word, Iterable<IntWritable> counts, Context context)
+    public static class Reduce extends Reducer<Text, Text, Text, Text> {
+        public void reduce(Text key, Text value, Context context)
                 throws IOException, InterruptedException {
-            int sum = 0;
-            for (IntWritable count : counts) {
-                sum += count.get();
-            }
-            context.write(word, new IntWritable(sum));
+//            int sum = 0;
+//            for (IntWritable count : counts) {
+//                sum += count.get();
+//            }
+            context.write(key, value);
         }
 
     }
@@ -143,21 +120,21 @@ public class tf {
         }
         for (int i = 0; i < args.length; i += 1) {
             if ("-skip".equals(args[i])) {
-                job.getConfiguration().setBoolean("wordcount.skip.patterns", true);
+                job.getConfiguration().setBoolean("file", true);
                 i += 1;
                 job.addCacheFile(new Path(args[i]).toUri());
                 LOG.info("Added file to the distributed cache: " + args[i]);
             }
         }
-        job.setJarByClass(KHMT1_06.class);
+        job.setJarByClass(tf.class);
         FileInputFormat.addInputPath(job, new Path(args[0]));
         FileOutputFormat.setOutputPath(job, new Path(args[1]));
-        job.setMapperClass(KHMT1_06.Map.class);
-        job.setCombinerClass(KHMT1_06.Reduce.class);
-        job.setReducerClass(KHMT1_06.Reduce.class);
+        job.setMapperClass(Map.class);
+//        job.setCombinerClass(Reduce.class);
+        job.setReducerClass(Reduce.class);
         job.setOutputKeyClass(Text.class);
-        job.setOutputValueClass(IntWritable.class);
-        job.setOutputFormatClass(KHMT1_06.CustomFileOutputFormat.class);
+        job.setOutputValueClass(Text.class);
+        job.setOutputFormatClass(CustomFileOutputFormat.class);
         //job.setOutputFormatClass(MTXOutputFormat.class);
         System.exit(job.waitForCompletion(true) ? 0 : 1);
     }
