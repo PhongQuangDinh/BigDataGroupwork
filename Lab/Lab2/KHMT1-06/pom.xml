@@ -4,8 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>task_1_3</groupId>
-    <artifactId>task_1_3.java</artifactId>
+    <groupId>task_1_4</groupId>
+    <artifactId>wordsPerFile.java</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
