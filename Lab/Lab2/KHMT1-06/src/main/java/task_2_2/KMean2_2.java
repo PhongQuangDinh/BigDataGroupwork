@@ -1,4 +1,4 @@
-package task_2_1;
+package task_2_2;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -19,8 +19,8 @@ import org.apache.hadoop.mapreduce.lib.output.MultipleOutputs;
 import org.apache.hadoop.util.GenericOptionsParser; // for InputFilePath
 
 import org.apache.log4j.Logger; // for debug
-public class KMean2_1 {
-    private static final Logger logger = Logger.getLogger(KMeansMapper.class); // for debug
+public class KMean2_2 {
+    private static final Logger logger = Logger.getLogger(task_2_2.KMean2_2.KMeansMapper.class); // for debug
 
     private static boolean isConvergence(String[] oldCentroids, String[] newCentroids) {
         for(int i = 0; i < oldCentroids.length; i++) {
@@ -243,11 +243,11 @@ public class KMean2_1 {
             logger.info("ITERATION NUMBER : " + iter_cnt);
 
             Job job = Job.getInstance(conf, "KMeans" + iter_cnt);
-            job.setJarByClass(KMean2_1.class);
+            job.setJarByClass(task_2_2.KMean2_2.class);
 
-            job.setMapperClass(KMeansMapper.class);
-            job.setCombinerClass(KMeansReducer.class);
-            job.setReducerClass(KMeansReducer.class);
+            job.setMapperClass(task_2_2.KMean2_2.KMeansMapper.class);
+            job.setCombinerClass(task_2_2.KMean2_2.KMeansReducer.class);
+            job.setReducerClass(task_2_2.KMean2_2.KMeansReducer.class);
 
             job.setOutputKeyClass(IntWritable.class);
             job.setOutputValueClass(Text.class);

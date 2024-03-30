@@ -1,4 +1,5 @@
 task_1_4\wordsPerFile$IntSumReducer.class
+task_2_2\KMean2_2.class
 task_1_2\task_1_2$CustomFileOutputFormat$1.class
 task_1_4\wordsPerFile.class
 task_1_4\tf.class
@@ -7,8 +8,10 @@ task_1_3\task_1_3$TermFrequencyMapper.class
 task_1_3\task_1_3.class
 task_1_4\tf$Reduce.class
 org\example\KHMT1_06$Reduce.class
+task_2_2\KMean2_2$KMeansMapper.class
 task_1_4\tf$CustomFileOutputFormat$1.class
 task_1_4\wordsPerFile$CustomFileOutputFormat.class
+task_2_2\KMean2_2$KMeansReducer.class
 task_1_3\task_1_3$CustomFileOutputFormat.class
 task_1_4\task_1_4$TokenizerMapper.class
 task_1_4\task_1_4$CustomFileOutputFormat.class
