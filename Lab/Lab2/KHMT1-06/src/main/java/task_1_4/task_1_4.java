@@ -1,4 +1,5 @@
 package task_1_4;
+import org.apache.commons.math3.util.Precision;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FSDataOutputStream;
 import org.apache.hadoop.fs.FileSystem;
@@ -14,6 +15,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URI;
+import java.text.DecimalFormat;
 import java.util.Hashtable;
 import java.util.List;
 
@@ -29,8 +31,11 @@ public class task_1_4 {
                 throws IOException, InterruptedException {
             Configuration conf = job.getConfiguration();
             String customFileName = "task_1_4.mtx";
+            // Customize the output directory and file name as needed
             Path outputDir = FileOutputFormat.getOutputPath(job);
             Path fullOutputPath = new Path(outputDir, customFileName);
+
+            // Create the file in the file system
             FileSystem fs = fullOutputPath.getFileSystem(conf);
             FSDataOutputStream fileOut = fs.create(fullOutputPath, false);
 
@@ -86,20 +91,30 @@ public class task_1_4 {
         public void map(Object offset, Text lineText, Context context)
                 throws IOException, InterruptedException {
             String[] parts = lineText.toString().split("\\s+");
-            context.write(new Text(parts[0] + " "+parts[1]), new Text(parts[2] + " " + parts[3]+ " " + parts[4] + " " + file_num.get("file")));
+            int frequency = Integer.parseInt(parts[2]);
+            int wordsPerFile = Integer.parseInt(parts[3]);
+            int filesPerWord = Integer.parseInt(parts[4]);
+            int filesNum = (file_num.get("file"));
+//            DecimalFormat df = new DecimalFormat("0.000000");
+//            float tf_idf = (float) (((float)(frequency/wordsPerFile)) * Math.log10(filesNum/filesPerWord));
+
+            float tf_idf = (float) ((float)(frequency*1000000/wordsPerFile)* Math.log10(filesNum/filesPerWord))/1000000;
+//            String formattedNum = df.format(tf_idf);
+            double roundedNum = Precision.round(tf_idf, 6);
+            context.write(new Text(parts[0] + " "+parts[1]), new Text(String.valueOf(roundedNum)));
         }
     }
 
     public static class Reduce extends Reducer<Text, Text, Text, Text> {
         public void reduce(Text key, Text value, Context context)
                 throws IOException, InterruptedException {
-            String[] parts = value.toString().split("\\s+");
-            int frequency = Integer.parseInt(parts[0]);
-            int wordsPerFile = Integer.parseInt(parts[1]);
-            int filesPerWord = Integer.parseInt(parts[2]);
-            int filesNum = Integer.parseInt(parts[3]);
-            float tf_idf = (float)((frequency/wordsPerFile) * Math.log10(filesNum/filesPerWord));
-            context.write(key, new Text(tf_idf+""));
+//            String[] parts = value.toString().split("\\s+");
+//            int frequency = Integer.parseInt(parts[0]);
+//            int wordsPerFile = Integer.parseInt(parts[1]);
+//            int filesPerWord = Integer.parseInt(parts[2]);
+//            int filesNum = Integer.parseInt(parts[3]);
+//            float tf_idf = (float)((frequency/wordsPerFile) * Math.log10(filesNum/filesPerWord));
+            context.write(key, value);
         }
 
     }
@@ -124,6 +139,7 @@ public class task_1_4 {
         FileOutputFormat.setOutputPath(job, new Path(args[1]));
         job.setMapperClass(Map.class);
         job.setReducerClass(Reduce.class);
+
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(Text.class);
         job.setOutputFormatClass(CustomFileOutputFormat.class);

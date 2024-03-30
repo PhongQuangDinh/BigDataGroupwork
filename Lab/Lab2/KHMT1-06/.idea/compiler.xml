@@ -6,15 +6,15 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="task_1_4.java" />
         <module name="KHMT1-06" />
-        <module name="filesNum.java" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="filesNum.java" target="1.8" />
       <module name="filesOfWord.java" target="1.8" />
       <module name="task_1_2.java" target="1.8" />
       <module name="task_1_3.java" target="1.8" />
-      <module name="task_1_4.java" target="1.8" />
       <module name="word_file.java" target="1.8" />
       <module name="wordFile.java" target="1.8" />
       <module name="wordsPerFile.java" target="1.8" />
