@@ -263,9 +263,7 @@ public abstract class KHMT1_06 extends Configured implements Tool {
 
     public static class Map extends Mapper<LongWritable, Text, Text, IntWritable> {
         private final static IntWritable one = new IntWritable(1);
-        private Text word = new Text();
         private boolean caseSensitive = false;
-
         private String input;
         private Set<String> patternsToSkip = new HashSet<String>(); //stop words to be removed from the final result
         private static final Pattern WORD_BOUNDARY = Pattern.compile("\\s*\\b\\s*");
