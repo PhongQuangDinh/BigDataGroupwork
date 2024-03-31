@@ -1,5 +1,4 @@
 task_2_1\task_2_1$CustomFileOutputFormat.class
-task_2_2\KMean2_2.class
 task_1_5\avg_tfidf$Reduce.class
 task_1_3\task_1_3$TermFrequencyMapper.class
 task_1_5\numDocPerFolder$CustomFileOutputFormat.class
@@ -9,6 +8,7 @@ org\example\KHMT1_06$Map.class
 task_1_4\task_1_4_1$Map.class
 task_1_4\task_1_4_1$CustomFileOutputFormat$1.class
 task_1_2\task_1_2$CustomFileOutputFormat.class
+task_2_2\task_2_2.class
 task_1_5\task_1_5$TermFrequencyMapper.class
 task_1_2\task_1_2$IntSumReducer.class
 task_1_2\task_1_2.class
@@ -22,18 +22,20 @@ task_1_4\task_1_4_3$CustomFileOutputFormat.class
 task_1_2\task_1_2$CustomFileOutputFormat$1.class
 task_1_4\task_1_4_3.class
 task_1_4\task_1_4_2$Reduce.class
+task_2_2\task_2_2$KMeansCombiner.class
 task_1_3\task_1_3.class
 task_2_1\task_2_1$KMeansCombiner.class
 task_1_5\task_1_5$CustomFileOutputFormat.class
 org\example\KHMT1_06$Reduce.class
 task_1_4\task_1_4_4$CustomFileOutputFormat.class
 task_1_4\task_1_4_6$CustomFileOutputFormat$1.class
-task_2_2\KMean2_2$KMeansMapper.class
+task_2_2\task_2_2$CustomFileOutputFormat$1.class
 task_1_5\avg_tfidf$Map.class
+task_2_2\task_2_2$KMeansReducer.class
 task_1_5\numDocPerFolder.class
 task_2_1\task_2_1.class
-task_2_2\KMean2_2$KMeansReducer.class
 task_1_5\avg_tfidf.class
+task_2_2\task_2_2$KMeansMapper.class
 task_1_3\task_1_3$CustomFileOutputFormat.class
 task_1_4\task_1_4_6.class
 org\example\KHMT1_06.class
@@ -44,4 +46,5 @@ task_1_2\task_1_2$TokenizerMapper.class
 task_1_4\task_1_4_4.class
 task_2_1\task_2_1$KMeansMapper.class
 task_1_5\numDocPerFolder$CustomFileOutputFormat$1.class
+task_2_2\task_2_2$CustomFileOutputFormat.class
 task_1_5\task_1_5.class
