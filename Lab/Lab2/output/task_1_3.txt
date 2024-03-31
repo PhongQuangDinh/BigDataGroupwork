@@ -1,0 +1,10 @@
+s	9070
+i	3906
+year	2309
+people	2045
+one	1892
+first	1355
+t	1343
+time	1322
+two	1282
+world	1201
