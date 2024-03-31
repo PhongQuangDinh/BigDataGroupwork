@@ -4,7 +4,6 @@ task_1_5\avg_tfidf$Reduce.class
 task_1_4\tf.class
 task_1_3\task_1_3$TermFrequencyMapper.class
 task_1_4\tf$Reduce.class
-task_1_5\numDocPerFolder$CustomFileOutputFormat.class
 task_1_4\filesNum$Map.class
 task_1_4\tf$CustomFileOutputFormat$1.class
 task_1_4\filesPerWord$CustomFileOutputFormat$1.class
@@ -44,8 +43,6 @@ task_1_5\avg_tfidf.class
 task_1_4\task_1_4$Reduce.class
 task_1_3\task_1_3$CustomFileOutputFormat.class
 org\example\KHMT1_06.class
-task_1_5\numDocPerFolder$Map.class
-task_1_5\numDocPerFolder$Reduce.class
 task_1_4\filesNum$CustomFileOutputFormat.class
 task_1_4\task_1_4.class
 task_2_1\KMean2_1$KMeansMapper.class
@@ -57,7 +54,6 @@ task_2_1\KMean2_1.class
 task_1_4\filesNum$CustomFileOutputFormat$1.class
 task_1_4\tf_filesPerWord$CustomFileOutputFormat$1.class
 task_1_4\tf_filesPerWord$Reduce.class
-task_1_5\numDocPerFolder$CustomFileOutputFormat$1.class
 task_1_4\filesPerWord$Reduce.class
 task_1_5\task_1_5.class
 task_1_4\wordsPerFile$TokenizerMapper.class

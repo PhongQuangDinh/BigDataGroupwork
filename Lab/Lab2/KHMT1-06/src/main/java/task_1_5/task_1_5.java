@@ -36,7 +36,7 @@ public class task_1_5 {
         public void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
             String[] parts = value.toString().split("\\s+");
             if (parts.length == 3) {
-                term.set(parts[0] + " " + parts[1]);
+                term.set(parts[1] + " " + parts[0]);
                 float frequency = Float.parseFloat(parts[2]);
                 context.write(term, new FloatWritable(frequency));
             }
@@ -54,7 +54,7 @@ public class task_1_5 {
             }
 
             String[] parts = key.toString().split(" ");
-            String type = parts[1];
+            String type = parts[0];
 
             if (!topFrequencies.containsKey(type)) {
                 topFrequencies.put(type, new TreeMap<>(Collections.reverseOrder()));
@@ -78,7 +78,7 @@ public class task_1_5 {
                 for (Map.Entry<Float, List<Text>> entry : frequencyMap.entrySet()) {
                     for (Text term : entry.getValue()) {
                         if (counter++ < 5) {
-                            context.write(new Text(term + " " + type), new FloatWritable(entry.getKey()));
+                            context.write(new Text(term), new FloatWritable(entry.getKey()));
                         }
                     }
                 }

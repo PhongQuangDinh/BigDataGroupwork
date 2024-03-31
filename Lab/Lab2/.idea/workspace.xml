@@ -5,67 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8b492c33-ef4c-4f78-b527-0650aa6562cf" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/KHMT1-06/src/main/java/task_1_5/avg_tfidf.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/KHMT1-06/src/main/java/task_1_5/numDocPerFolder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/KHMT1-06/src/main/java/task_1_5/task_1_5.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KHMT1-06/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/KHMT1-06/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KHMT1-06/src/main/java/org/example/KHMT1_06.java" beforeDir="false" afterPath="$PROJECT_DIR$/KHMT1-06/src/main/java/org/example/KHMT1_06.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KHMT1-06/target/classes/org/example/KHMT1_06$CustomFileOutputFormat$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/KHMT1-06/target/classes/org/example/KHMT1_06$CustomFileOutputFormat$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KHMT1-06/target/classes/org/example/KHMT1_06$CustomFileOutputFormat.class" beforeDir="false" afterPath="$PROJECT_DIR$/KHMT1-06/target/classes/org/example/KHMT1_06$CustomFileOutputFormat.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KHMT1-06/target/classes/org/example/KHMT1_06$Map.class" beforeDir="false" afterPath="$PROJECT_DIR$/KHMT1-06/target/classes/org/example/KHMT1_06$Map.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KHMT1-06/target/classes/org/example/KHMT1_06$Reduce.class" beforeDir="false" afterPath="$PROJECT_DIR$/KHMT1-06/target/classes/org/example/KHMT1_06$Reduce.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KHMT1-06/target/classes/org/example/KHMT1_06.class" beforeDir="false" afterPath="$PROJECT_DIR$/KHMT1-06/target/classes/org/example/KHMT1_06.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_2/task_1_2$CustomFileOutputFormat$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_2/task_1_2$CustomFileOutputFormat$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_2/task_1_2$CustomFileOutputFormat.class" beforeDir="false" afterPath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_2/task_1_2$CustomFileOutputFormat.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_2/task_1_2$IntSumReducer.class" beforeDir="false" afterPath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_2/task_1_2$IntSumReducer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_2/task_1_2$TokenizerMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_2/task_1_2$TokenizerMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_2/task_1_2.class" beforeDir="false" afterPath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_2/task_1_2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_3/task_1_3$CustomFileOutputFormat.class" beforeDir="false" afterPath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_3/task_1_3$CustomFileOutputFormat.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_3/task_1_3$IntSumReducer.class" beforeDir="false" afterPath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_3/task_1_3$IntSumReducer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_3/task_1_3$TermFrequencyMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_3/task_1_3$TermFrequencyMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_3/task_1_3.class" beforeDir="false" afterPath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_3/task_1_3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_4/filesNum$CustomFileOutputFormat$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_4/filesNum$CustomFileOutputFormat$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_4/filesNum$CustomFileOutputFormat.class" beforeDir="false" afterPath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_4/filesNum$CustomFileOutputFormat.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_4/filesNum$Map.class" beforeDir="false" afterPath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_4/filesNum$Map.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_4/filesNum$Reduce.class" beforeDir="false" afterPath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_4/filesNum$Reduce.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_4/filesNum.class" beforeDir="false" afterPath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_4/filesNum.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_4/filesPerWord$CustomFileOutputFormat$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_4/filesPerWord$CustomFileOutputFormat$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_4/filesPerWord$CustomFileOutputFormat.class" beforeDir="false" afterPath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_4/filesPerWord$CustomFileOutputFormat.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_4/filesPerWord$Map.class" beforeDir="false" afterPath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_4/filesPerWord$Map.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_4/filesPerWord$Reduce.class" beforeDir="false" afterPath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_4/filesPerWord$Reduce.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_4/filesPerWord.class" beforeDir="false" afterPath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_4/filesPerWord.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_4/task_1_4$CustomFileOutputFormat$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_4/task_1_4$CustomFileOutputFormat$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_4/task_1_4$CustomFileOutputFormat.class" beforeDir="false" afterPath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_4/task_1_4$CustomFileOutputFormat.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_4/task_1_4$Map.class" beforeDir="false" afterPath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_4/task_1_4$Map.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_4/task_1_4$Reduce.class" beforeDir="false" afterPath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_4/task_1_4$Reduce.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_4/task_1_4.class" beforeDir="false" afterPath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_4/task_1_4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_4/tf$CustomFileOutputFormat$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_4/tf$CustomFileOutputFormat$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_4/tf$CustomFileOutputFormat.class" beforeDir="false" afterPath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_4/tf$CustomFileOutputFormat.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_4/tf$Map.class" beforeDir="false" afterPath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_4/tf$Map.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_4/tf$Reduce.class" beforeDir="false" afterPath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_4/tf$Reduce.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_4/tf.class" beforeDir="false" afterPath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_4/tf.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_4/tf_filesPerWord$CustomFileOutputFormat$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_4/tf_filesPerWord$CustomFileOutputFormat$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_4/tf_filesPerWord$CustomFileOutputFormat.class" beforeDir="false" afterPath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_4/tf_filesPerWord$CustomFileOutputFormat.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_4/tf_filesPerWord$Map.class" beforeDir="false" afterPath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_4/tf_filesPerWord$Map.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_4/tf_filesPerWord$Reduce.class" beforeDir="false" afterPath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_4/tf_filesPerWord$Reduce.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_4/tf_filesPerWord.class" beforeDir="false" afterPath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_4/tf_filesPerWord.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_4/wordsPerFile$CustomFileOutputFormat$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_4/wordsPerFile$CustomFileOutputFormat$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_4/wordsPerFile$CustomFileOutputFormat.class" beforeDir="false" afterPath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_4/wordsPerFile$CustomFileOutputFormat.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_4/wordsPerFile$IntSumReducer.class" beforeDir="false" afterPath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_4/wordsPerFile$IntSumReducer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_4/wordsPerFile$TokenizerMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_4/wordsPerFile$TokenizerMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_4/wordsPerFile.class" beforeDir="false" afterPath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_4/wordsPerFile.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KHMT1-06/target/classes/task_2_1/KMean2_1$KMeansMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/KHMT1-06/target/classes/task_2_1/KMean2_1$KMeansMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KHMT1-06/target/classes/task_2_1/KMean2_1$KMeansReducer.class" beforeDir="false" afterPath="$PROJECT_DIR$/KHMT1-06/target/classes/task_2_1/KMean2_1$KMeansReducer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KHMT1-06/target/classes/task_2_1/KMean2_1.class" beforeDir="false" afterPath="$PROJECT_DIR$/KHMT1-06/target/classes/task_2_1/KMean2_1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KHMT1-06/target/classes/task_2_2/KMean2_2$KMeansMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/KHMT1-06/target/classes/task_2_2/KMean2_2$KMeansMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KHMT1-06/target/classes/task_2_2/KMean2_2$KMeansReducer.class" beforeDir="false" afterPath="$PROJECT_DIR$/KHMT1-06/target/classes/task_2_2/KMean2_2$KMeansReducer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KHMT1-06/target/classes/task_2_2/KMean2_2.class" beforeDir="false" afterPath="$PROJECT_DIR$/KHMT1-06/target/classes/task_2_2/KMean2_2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KHMT1-06/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/KHMT1-06/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KHMT1-06/src/main/java/task_1_5/numDocPerFolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/KHMT1-06/src/main/java/task_1_5/numDocPerFolder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KHMT1-06/src/main/java/task_1_5/task_1_5.java" beforeDir="false" afterPath="$PROJECT_DIR$/KHMT1-06/src/main/java/task_1_5/task_1_5.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_5/numDocPerFolder$CustomFileOutputFormat$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_5/numDocPerFolder$CustomFileOutputFormat.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_5/numDocPerFolder$Map.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_5/numDocPerFolder$Reduce.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_5/numDocPerFolder.class" beforeDir="false" afterPath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_5/numDocPerFolder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_5/task_1_5$FloatSumReducer.class" beforeDir="false" afterPath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_5/task_1_5$FloatSumReducer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_5/task_1_5.class" beforeDir="false" afterPath="$PROJECT_DIR$/KHMT1-06/target/classes/task_1_5/task_1_5.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/KHMT1-06/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/KHMT1-06/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KHMT1-06/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/KHMT1-06/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KHMT1-06/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/KHMT1-06/target/task_1_4.java-1.0-SNAPSHOT.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/KHMT1-06/target/task_1_5.java-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/KHMT1-06/target/task_1_5.java-1.0-SNAPSHOT.jar" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,6 +32,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="MavenRunner">
+    <option name="skipTests" value="true" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 0
@@ -98,6 +52,7 @@
     "ASKED_ADD_EXTERNAL_FILES": "true",
     "Maven.KHMT1-06 [clean].executor": "Run",
     "Maven.KHMT1-06 [install].executor": "Run",
+    "Maven.avg_tfidf.java [install].executor": "Run",
     "Maven.numDocPerFolder.java [clean].executor": "Run",
     "Maven.numDocPerFolder.java [install].executor": "Run",
     "Maven.task_1_2.java [clean].executor": "Run",

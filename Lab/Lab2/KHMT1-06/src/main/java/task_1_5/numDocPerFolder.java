@@ -1,97 +1,43 @@
+
 package task_1_5;
-import java.io.BufferedReader;
-import java.net.URI;
-import java.io.IOException;
-
 import org.apache.hadoop.conf.Configuration;
-import org.apache.hadoop.fs.FSDataOutputStream;
-import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.fs.FileSystem;
-import org.apache.hadoop.io.IntWritable;
-import org.apache.hadoop.io.Text;
-import org.apache.hadoop.mapreduce.*;
-import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
-import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;
-import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
-import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
-
-import java.io.InputStreamReader;
-import java.util.HashSet;
-import java.util.Set;
+import org.apache.hadoop.fs.FileStatus;
+import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.fs.FSDataOutputStream;
 
 public class numDocPerFolder {
-    public static class CustomFileOutputFormat extends FileOutputFormat<Text, IntWritable> {
+    public static void main(String[] args) {
+        try {
+            Configuration conf = new Configuration();
+            FileSystem fs = FileSystem.get(conf);
 
-        @Override
-        public RecordWriter<Text, IntWritable> getRecordWriter(TaskAttemptContext job)
-                throws IOException, InterruptedException {
-            Configuration conf = job.getConfiguration();
-            String customFileName = "filesNum.mtx";
-            Path outputDir = FileOutputFormat.getOutputPath(job);
-            Path fullOutputPath = new Path(outputDir, customFileName);
+            // Specify the base directory
+            Path baseDir = new Path(args[0]);
+            FileStatus[] subDirs = fs.listStatus(baseDir);
 
-            FileSystem fs = fullOutputPath.getFileSystem(conf);
-            FSDataOutputStream fileOut = fs.create(fullOutputPath, false);
+            // Create an output file in HDFS
+            Path outputPath = new Path(args[1] + "/filePerFolder.txt");
 
-            return new RecordWriter<Text, IntWritable>() {
-                @Override
-                public void write(Text key, IntWritable value) throws IOException, InterruptedException {
-                    String line = key.toString() + " " + value.toString() + "\n"; // Write key-value pair as a line
-                    fileOut.writeBytes(line);
+            FSDataOutputStream outputStream = fs.create(outputPath);
+
+            for (FileStatus subDir : subDirs) {
+                if (subDir.isDirectory()) {
+                    Path subDirPath = subDir.getPath();
+
+                    FileStatus[] files = fs.listStatus(subDirPath);
+
+                    int fileCount = files.length;
+
+                    String outputLine = subDirPath.getName() + " " + fileCount + "\n";
+                    outputStream.writeBytes(outputLine);
+                    System.out.println("File counts written to " + outputPath.toString());
                 }
-
-                @Override
-                public void close(TaskAttemptContext context) throws IOException, InterruptedException {
-                    fileOut.close();
-                }
-            };
-        }
-    }
-    public static class Map
-            extends Mapper<Object, Text, Text, IntWritable> {
-
-        public void map(Object key, Text value, Context context
-        ) throws IOException, InterruptedException {
-            String[] parts = value.toString().split("\\s+");
-            String[] part1 = parts[1].split("/");
-            context.write(new Text(part1[0]), new IntWritable(1));
-        }
-    }
-
-    public static class Reduce
-            extends Reducer<Text, IntWritable, Text, IntWritable> {
-        public void reduce(Text key, Iterable<IntWritable> values,
-                           Context context
-        ) throws IOException, InterruptedException {
-            int sum = 0;
-            for (IntWritable val : values) {
-                sum += val.get();
             }
-            context.write(key, new IntWritable(sum));
+
+            outputStream.close();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-    }
-    public static void main(String[] args) throws Exception {
-        Configuration conf = new Configuration();
-        Job job = Job.getInstance(conf, "MTX Filter Job");
-        job.setJarByClass(numDocPerFolder.class);
-        FileSystem fs = FileSystem.get(conf);
-        if(fs.exists(new Path(args[1]))){
-            fs.delete(new Path(args[1]),true);
-        }
-        job.setInputFormatClass(TextInputFormat.class);
-        job.setOutputFormatClass(TextOutputFormat.class);
-
-        job.setMapperClass(Map.class);
-        job.setReducerClass(Reduce.class);
-
-        job.setOutputKeyClass(Text.class);
-        job.setOutputValueClass(IntWritable.class);
-
-        job.setOutputFormatClass(CustomFileOutputFormat.class);
-
-        FileInputFormat.addInputPath(job, new Path(args[0]));
-        FileOutputFormat.setOutputPath(job, new Path(args[1]));
-
-        System.exit(job.waitForCompletion(true) ? 0 : 1);
     }
 }
