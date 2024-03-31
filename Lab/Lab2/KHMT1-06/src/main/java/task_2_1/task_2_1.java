@@ -9,16 +9,42 @@ import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.*;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
-import org.apache.hadoop.mapreduce.Job;
-import org.apache.hadoop.mapreduce.Mapper;
-import org.apache.hadoop.mapreduce.Reducer;
+import org.apache.hadoop.mapreduce.*;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.mapreduce.lib.output.MultipleOutputs;
+import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
 import org.apache.hadoop.util.GenericOptionsParser; // for InputFilePath
 
 import org.apache.log4j.Logger; // for debug
-public class KMean2_1 {
+public class task_2_1 {
+    public static class CustomFileOutputFormat extends FileOutputFormat<IntWritable, Text> {
+
+        @Override
+        public RecordWriter<IntWritable, Text> getRecordWriter(TaskAttemptContext job)
+                throws IOException, InterruptedException {
+            Configuration conf = job.getConfiguration();
+            String customFileName = "task_2_1.clusters";
+            Path outputDir = FileOutputFormat.getOutputPath(job);
+            Path fullOutputPath = new Path(outputDir, customFileName);
+
+            FileSystem fs = fullOutputPath.getFileSystem(conf);
+            FSDataOutputStream fileOut = fs.create(fullOutputPath, false);
+
+            return new RecordWriter<IntWritable, Text>() {
+                @Override
+                public void write(IntWritable key, Text value) throws IOException, InterruptedException {
+                    String add = "Cluster_" + (key.get() + 1) + " | ";
+                    String line = add + "\t" + value.toString() + "\n"; // Write key-value pair as a line
+                    fileOut.writeBytes(line);
+                }
+                @Override
+                public void close(TaskAttemptContext context) throws IOException, InterruptedException {
+                    fileOut.close();
+                }
+            };
+        }
+    }
     private static final Logger logger = Logger.getLogger(KMeansMapper.class); // for debug
 
     private static boolean isConvergence(String[] oldCentroids, String[] newCentroids) {
@@ -41,8 +67,7 @@ public class KMean2_1 {
         String line;
         while ((line = reader.readLine()) != null) {
             if (!line.contains("class")) {
-                String[] line_str = line.split(",");
-                points.add(line_str[1] + "," + line_str[2]);
+                points.add(line);
             }
         }
         String[] res = new String[points.size()];
@@ -63,7 +88,7 @@ public class KMean2_1 {
         FileStatus[] status = hdfs.listStatus(new Path(filePath));
         for (int i = 0; i < status.length; i++) {
             //Read the centroids from the hdfs
-            if(status[i].getPath().toString().endsWith("part-r-00000")) {
+            if(status[i].getPath().toString().endsWith("task_2_1.clusters")) { // part-r-00000
                 BufferedReader reader = new BufferedReader(new InputStreamReader(hdfs.open(status[i].getPath())));
                 String line;
                 int cnt = 0;
@@ -77,39 +102,26 @@ public class KMean2_1 {
             }
         }
         // delete the temporary directory for new run
-        hdfs.delete(new Path(filePath), true);
+        // hdfs.delete(new Path(filePath), true);
         return points;
-    }
-    private static String[] selectRandomPoints(String[] points, int numRandomPoints) {
-        String[] randomPoints = new String[numRandomPoints];
-        Random random = new Random();
-        for (int i = 0; i < numRandomPoints; i++) {
-            int randomIndex = random.nextInt(points.length);
-            randomPoints[i] = points[randomIndex];
-        }
-        return randomPoints;
     }
     private static String[] initK_Centroids(Configuration conf, String InputPath, int K) throws IOException {
         String[] points = readPointsFromCSV(conf,InputPath);
-        String[] randomPoints = selectRandomPoints(points, K);
-        String[] newPoints = new String[K];
+        String[] randomPoints = new String[K];
+        Random random = new Random();
         int cnt = 0;
         for (int i = 0; i < K; i++) {
-            newPoints[i] = randomPoints[i];
-            String[] row = randomPoints[i].split(",");
-            double[] centroid = {Double.parseDouble(row[0]), Double.parseDouble(row[1])};
-            // save this one to cache files so mapper and reducer can read from it
-            conf.set("centroid" + cnt, centroid[0] + "," + centroid[1]);
+            int randomIndex = random.nextInt(points.length);
+            randomPoints[i] = points[randomIndex];
+            conf.set("centroid" + cnt, points[randomIndex]);
             cnt++;
         }
         conf.set("k", K + ""); // this one to cache as well
-        return newPoints;
+        return randomPoints;
     }
 
     //------------------------------------MAPPER----------------------------------------
     public static class KMeansMapper extends Mapper<Object, Text, IntWritable, Text> {
-        private static MultipleOutputs<IntWritable, Text> multipleOutputs;
-        // private Text centroid_txt = new Text();
         private static List<double[]> centroids = new ArrayList<>();
         private static int K = 0;
         @Override
@@ -118,7 +130,7 @@ public class KMean2_1 {
             for (int i = 0; i < K; i++)
             {
                 String[] centroid_str = context.getConfiguration().get("centroid" + i).split(",");
-                double[] point = {Double.parseDouble(centroid_str[0]) , Double.parseDouble(centroid_str[1])};
+                double[] point = {Integer.parseInt(centroid_str[0]) , Double.parseDouble(centroid_str[1]), Double.parseDouble(centroid_str[2])};
                 centroids.add(point);
             }
         }
@@ -131,8 +143,8 @@ public class KMean2_1 {
             }
             String[] point = value.toString().split(",");
             int label_class = Integer.parseInt(point[0]);
-            double x1 = Double.parseDouble(point[1]);
-            double x2 = Double.parseDouble(point[2]);
+            double x2 = Double.parseDouble(point[1]);
+            double x3 = Double.parseDouble(point[2]);
 
             // Calculate the distance to centroids and find the nearest one
             double minDistance = Double.MAX_VALUE;
@@ -140,7 +152,7 @@ public class KMean2_1 {
             for (int i = 0; i < centroids.size(); i++) {
                 double[] centroid = centroids.get(i);
                 // Euclidean distance
-                double distance = Math.sqrt(Math.pow(x1 - centroid[0], 2) + Math.pow(x2 - centroid[1], 2));
+                double distance = Math.sqrt(Math.pow(label_class - centroid[0], 2) + Math.pow(x2 - centroid[1], 2) + Math.pow(x3 - centroid[2],2));
                 if (distance < minDistance) {
                     minDistance = distance;
                     minIndex = i;
@@ -148,71 +160,62 @@ public class KMean2_1 {
             }
 
             // Emit the nearest centroid and the point
-            context.write(new IntWritable(minIndex), new Text(x1 + "," + x2));
+            context.write(new IntWritable(minIndex), value);
             // key is the closest centroid, value is the point that close to it
         }
     }
 
-    //------------------------------------REDUCER----------------------------------------
-    public static class KMeansReducer extends Reducer<IntWritable, Text, IntWritable, Text> {
+    //------------------------------------COMBINER----------------------------------------
+    public static class KMeansCombiner extends Reducer<IntWritable, Text, IntWritable, Text> {
+        private static MultipleOutputs<IntWritable, Text> writer;
+        @Override
+        protected void setup(Context context) throws IOException, InterruptedException {
+            writer = new MultipleOutputs<>(context);
+        }
+        @Override
+        protected void cleanup(Context context) throws IOException, InterruptedException {
+            writer.close();
+        }
         public void reduce(IntWritable key, Iterable<Text> values, Context context)
                 throws IOException, InterruptedException {
             // Calculate the new centroid
+            int sumClass = 0;
             double sumX1 = 0;
             double sumX2 = 0;
             int count = 0;
             for (Text point : values) {
                 String[] point_str = point.toString().split(",");
-                sumX1 += Double.parseDouble(point_str[0]);
-                sumX2 += Double.parseDouble(point_str[1]);
+                sumClass += Integer.parseInt(point_str[0]);
+                sumX1 += Double.parseDouble(point_str[1]);
+                sumX2 += Double.parseDouble(point_str[2]);
                 count++;
+
+                int key_val = Integer.parseInt(key.toString()) + 1;
+                writer.write("task21classes",new Text("Cluster_" + key_val + "|"), point);
             }
-            Text newCentroid = new Text((sumX1 / count) + "," + (sumX2 / count));
+            Text newCentroid = new Text((int)(sumClass / count) + "," + (sumX1 / count) + "," + (sumX2 / count));
             context.write(key, newCentroid);
         }
     }
-    private static void writeOutput(Configuration conf, String[] centroids, String outputPath) throws Exception
-    {
-        // task_2_1.clusters
-        FileSystem hdfs = FileSystem.get(conf);
-        FSDataOutputStream dos = hdfs.create(new Path(outputPath + "/task_2_1.clusters"), true);
-        BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(dos));
-
-        for(int i = 0; i < centroids.length; i++) {
-            writer.write((i + 1) + " | (" + centroids[i] + ")");
-            writer.newLine();
-        }
-        writer.close();
-
-        // task_2_1.classes, too long and slow
-        FSDataOutputStream dosClass = hdfs.create(new Path(outputPath + "/task_2_1.classes"), true);
-        BufferedWriter writerClass = new BufferedWriter(new OutputStreamWriter(dosClass));
-        int point_size = Integer.parseInt(conf.get("pointSize"));
-        for(int i = 0; i < point_size; i++) {
-            String[] point = conf.get("point" + i).split(",");
-            double x = Double.parseDouble(point[0]);
-            double y = Double.parseDouble(point[1]);
-
-            double minDistance = Double.MAX_VALUE;
-            int minIndex = -1;
-            for (int j = 0; j < centroids.length; j++) {
-                String[] centroid = centroids[j].split(",");
-                double centroid_x = Double.parseDouble(centroid[0]);
-                double centroid_y = Double.parseDouble(centroid[1]);
-
-                // Euclidean distance
-                double distance = Math.sqrt(Math.pow(x - centroid_x, 2) + Math.pow(y - centroid_y, 2));
-                if (distance < minDistance) {
-                    minDistance = distance;
-                    minIndex = j;
-                }
+    //------------------------------------REDUCER----------------------------------------
+    public static class KMeansReducer extends Reducer<IntWritable, Text, IntWritable, Text> {
+        public void reduce(IntWritable key, Iterable<Text> values, Context context)
+                throws IOException, InterruptedException {
+            // Calculate the new centroid
+            int sumClass = 0;
+            double sumX1 = 0;
+            double sumX2 = 0;
+            int count = 0;
+            for (Text point : values) {
+                String[] point_str = point.toString().split(",");
+                sumClass += Integer.parseInt(point_str[0]);
+                sumX1 += Double.parseDouble(point_str[1]);
+                sumX2 += Double.parseDouble(point_str[2]);
+                count++;
             }
-            writerClass.write((minIndex + 1) + " | (" + point[0] + "," + point[1] + ")");
-            writerClass.newLine();
+            Text newCentroid = new Text((int)(sumClass / count) + "," + (sumX1 / count) + "," + (sumX2 / count));
+            context.write(key, newCentroid);
         }
-        writerClass.close();
-
-        hdfs.close();
     }
 
     public static void main(String[] args) throws Exception {
@@ -242,17 +245,21 @@ public class KMean2_1 {
             logger.info("ITERATION NUMBER : " + iter_cnt);
 
             Job job = Job.getInstance(conf, "KMeans" + iter_cnt);
-            job.setJarByClass(KMean2_1.class);
+            job.setJarByClass(task_2_1.class);
 
             job.setMapperClass(KMeansMapper.class);
-            job.setCombinerClass(KMeansReducer.class);
+            job.setCombinerClass(KMeansCombiner.class);
             job.setReducerClass(KMeansReducer.class);
 
             job.setOutputKeyClass(IntWritable.class);
             job.setOutputValueClass(Text.class);
 
+            job.setOutputFormatClass(CustomFileOutputFormat.class); // my custom output
+
             FileInputFormat.addInputPath(job, new Path(args[0]));
-            FileOutputFormat.setOutputPath(job, new Path(args[1] + "/temp"));
+            FileOutputFormat.setOutputPath(job, new Path(args[1]));
+
+            MultipleOutputs.addNamedOutput(job, "task21classes", TextOutputFormat.class,IntWritable.class,Text.class);
 
             if (!job.waitForCompletion(true))
             {
@@ -263,20 +270,30 @@ public class KMean2_1 {
             for(int i = 0; i < K; i++) {
                 oldCentroids[i] = newCentroids[i];
             }
-            newCentroids = readCentroidsFromOutput(conf, otherArgs[1] + "/temp", K);
-
+            newCentroids = readCentroidsFromOutput(conf, otherArgs[1], K);
             isDone = isConvergence(oldCentroids, newCentroids);
             conf.set("isDone", isDone + "");
+
             logger.info("ITERATION " + iter_cnt + " is convergence = " + isDone);
 
             if(isDone || iter_cnt == (Max_iteration -1)) {
-                writeOutput(conf, newCentroids, otherArgs[1]);
+                FileSystem hdfs = FileSystem.get(conf);
+                Path reducerOutputFile = new Path(otherArgs[1], "task21classes-m-00000");
+                Path newOutputFile = new Path(otherArgs[1], "task_2_1.classes");
+                hdfs.rename(reducerOutputFile, newOutputFile);
+                hdfs.close();
+
                 logger.info("Successfully written file to " + otherArgs[1] + "/task_2_1.clusters and " + otherArgs[1] + "/task_2_1.classes");
             } else {
                 // write new centroids to cache
                 for(int i = 0; i < K; i++) {
                     conf.unset("centroid" + i);
                     conf.set("centroid" + i, newCentroids[i]);
+
+                    // if not convergence then delete the old save to write a new one
+                    FileSystem hdfs = FileSystem.get(conf);
+                    hdfs.delete(new Path(otherArgs[1]), true);
+                    hdfs.close();
                 }
             }
         }
