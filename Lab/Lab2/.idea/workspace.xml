@@ -5,13 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8b492c33-ef4c-4f78-b527-0650aa6562cf" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/output/avg_tfidf.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/output/numFile.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/output/task_1_5.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KHMT1-06/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/KHMT1-06/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KHMT1-06/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/KHMT1-06/target/maven-archiver/pom.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KHMT1-06/target/task_1_3.java-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/KHMT1-06/target/task_1_3.java-1.0-SNAPSHOT.jar" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,35 +36,35 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Maven.KHMT1-06 [clean].executor": "Run",
-    "Maven.KHMT1-06 [install].executor": "Run",
-    "Maven.avg_tfidf.java [install].executor": "Run",
-    "Maven.numDocPerFolder.java [clean].executor": "Run",
-    "Maven.numDocPerFolder.java [install].executor": "Run",
-    "Maven.task_1_2.java [clean].executor": "Run",
-    "Maven.task_1_2.java [install].executor": "Run",
-    "Maven.task_1_3.java [clean].executor": "Run",
-    "Maven.task_1_3.java [install\\].executor": "Run",
-    "Maven.task_1_3.java [install].executor": "Run",
-    "Maven.task_1_5.java [clean].executor": "Run",
-    "Maven.task_1_5.java [install].executor": "Run",
-    "Maven.task_2_2.java [install].executor": "Run",
-    "Maven.test.java [clean].executor": "Run",
-    "Maven.test.java [install].executor": "Run",
-    "Maven.wordsPerFile.java [clean].executor": "Run",
-    "Maven.wordsPerFile.java [install].executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/gitproj/BigDataGroupwork/Lab/Lab2"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Maven.KHMT1-06 [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.KHMT1-06 [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.avg_tfidf.java [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.numDocPerFolder.java [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.numDocPerFolder.java [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.task_1_2.java [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.task_1_2.java [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.task_1_3.java [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.task_1_3.java [install\\].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.task_1_3.java [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.task_1_5.java [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.task_1_5.java [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.task_2_2.java [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.test.java [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.test.java [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.wordsPerFile.java [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.wordsPerFile.java [install].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/gitproj/BigDataGroupwork/Lab/Lab2&quot;
   }
-}]]></component>
+}</component>
   <component name="RunAnythingCache">
     <option name="myCommands">
       <command value="mvn install\" />
