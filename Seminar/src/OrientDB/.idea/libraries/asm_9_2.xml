@@ -1,0 +1,76 @@
+<component name="libraryTable">
+  <library name="asm-9.2">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../../../../../../../../OrientDB/orientdb-community-3.2.29/lib/asm-9.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../../../../../../OrientDB/orientdb-community-3.2.29/lib/asm-analysis-9.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../../../../../../OrientDB/orientdb-community-3.2.29/lib/asm-commons-9.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../../../../../../OrientDB/orientdb-community-3.2.29/lib/asm-tree-9.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../../../../../../OrientDB/orientdb-community-3.2.29/lib/asm-util-9.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../../../../../../OrientDB/orientdb-community-3.2.29/lib/bcpkix-jdk18on-1.77.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../../../../../../OrientDB/orientdb-community-3.2.29/lib/bcprov-jdk18on-1.77.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../../../../../../OrientDB/orientdb-community-3.2.29/lib/bcutil-jdk18on-1.77.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../../../../../../OrientDB/orientdb-community-3.2.29/lib/chromeinspector-21.3.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../../../../../../OrientDB/orientdb-community-3.2.29/lib/commons-csv-1.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../../../../../../OrientDB/orientdb-community-3.2.29/lib/commons-io-2.11.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../../../../../../OrientDB/orientdb-community-3.2.29/lib/commons-lang-2.6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../../../../../../OrientDB/orientdb-community-3.2.29/lib/concurrentlinkedhashmap-lru-1.4.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../../../../../../OrientDB/orientdb-community-3.2.29/lib/graal-sdk-21.3.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../../../../../../OrientDB/orientdb-community-3.2.29/lib/hazelcast-3.12.13.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../../../../../../OrientDB/orientdb-community-3.2.29/lib/hazelcast-kubernetes-1.5.6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../../../../../../OrientDB/orientdb-community-3.2.29/lib/hibernate-jpa-2.0-api-1.0.1.Final.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../../../../../../OrientDB/orientdb-community-3.2.29/lib/hppc-0.8.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../../../../../../OrientDB/orientdb-community-3.2.29/lib/icu4j-71.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../../../../../../OrientDB/orientdb-community-3.2.29/lib/istack-commons-runtime-4.0.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../../../../../../OrientDB/orientdb-community-3.2.29/lib/jackson-core-2.15.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../../../../../../OrientDB/orientdb-community-3.2.29/lib/jakarta.activation-2.0.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../../../../../../OrientDB/orientdb-community-3.2.29/lib/jakarta.xml.bind-api-3.0.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../../../../../../OrientDB/orientdb-community-3.2.29/lib/javassist-3.29.2-GA.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../../../../../../OrientDB/orientdb-community-3.2.29/lib/javax.activation-api-1.2.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../../../../../../OrientDB/orientdb-community-3.2.29/lib/jaxb-core-3.0.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../../../../../../OrientDB/orientdb-community-3.2.29/lib/jaxb-runtime-3.0.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../../../../../../OrientDB/orientdb-community-3.2.29/lib/jffi-1.3.9-native.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../../../../../../OrientDB/orientdb-community-3.2.29/lib/jffi-1.3.9.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../../../../../../OrientDB/orientdb-community-3.2.29/lib/jnr-a64asm-1.0.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../../../../../../OrientDB/orientdb-community-3.2.29/lib/jnr-constants-0.10.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../../../../../../OrientDB/orientdb-community-3.2.29/lib/jnr-ffi-2.2.11.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../../../../../../OrientDB/orientdb-community-3.2.29/lib/jnr-posix-3.1.15.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../../../../../../OrientDB/orientdb-community-3.2.29/lib/jnr-x86asm-1.0.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../../../../../../OrientDB/orientdb-community-3.2.29/lib/js-21.3.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../../../../../../OrientDB/orientdb-community-3.2.29/lib/js-scriptengine-21.3.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../../../../../../OrientDB/orientdb-community-3.2.29/lib/jts-core-1.17.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../../../../../../OrientDB/orientdb-community-3.2.29/lib/lucene-analyzers-common-7.7.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../../../../../../OrientDB/orientdb-community-3.2.29/lib/lucene-backward-codecs-7.7.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../../../../../../OrientDB/orientdb-community-3.2.29/lib/lucene-codecs-7.7.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../../../../../../OrientDB/orientdb-community-3.2.29/lib/lucene-core-7.7.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../../../../../../OrientDB/orientdb-community-3.2.29/lib/lucene-facet-7.7.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../../../../../../OrientDB/orientdb-community-3.2.29/lib/lucene-highlighter-7.7.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../../../../../../OrientDB/orientdb-community-3.2.29/lib/lucene-join-7.7.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../../../../../../OrientDB/orientdb-community-3.2.29/lib/lucene-memory-7.7.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../../../../../../OrientDB/orientdb-community-3.2.29/lib/lucene-misc-7.7.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../../../../../../OrientDB/orientdb-community-3.2.29/lib/lucene-queries-7.7.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../../../../../../OrientDB/orientdb-community-3.2.29/lib/lucene-queryparser-7.7.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../../../../../../OrientDB/orientdb-community-3.2.29/lib/lucene-sandbox-7.7.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../../../../../../OrientDB/orientdb-community-3.2.29/lib/lucene-spatial-7.7.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../../../../../../OrientDB/orientdb-community-3.2.29/lib/lucene-spatial-extras-7.7.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../../../../../../OrientDB/orientdb-community-3.2.29/lib/lucene-spatial3d-7.7.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../../../../../../OrientDB/orientdb-community-3.2.29/lib/lz4-java-1.8.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../../../../../../OrientDB/orientdb-community-3.2.29/lib/noggit-0.8.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../../../../../../OrientDB/orientdb-community-3.2.29/lib/orientdb-client-3.2.29.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../../../../../../OrientDB/orientdb-community-3.2.29/lib/orientdb-core-3.2.29.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../../../../../../OrientDB/orientdb-community-3.2.29/lib/orientdb-distributed-3.2.29.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../../../../../../OrientDB/orientdb-community-3.2.29/lib/orientdb-jdbc-3.2.29.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../../../../../../OrientDB/orientdb-community-3.2.29/lib/orientdb-lucene-3.2.29.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../../../../../../OrientDB/orientdb-community-3.2.29/lib/orientdb-object-3.2.29.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../../../../../../OrientDB/orientdb-community-3.2.29/lib/orientdb-server-3.2.29.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../../../../../../OrientDB/orientdb-community-3.2.29/lib/orientdb-tools-3.2.29.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../../../../../../OrientDB/orientdb-community-3.2.29/lib/profiler-21.3.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../../../../../../OrientDB/orientdb-community-3.2.29/lib/regex-21.3.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../../../../../../OrientDB/orientdb-community-3.2.29/lib/s2-geometry-library-java-1.0.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../../../../../../OrientDB/orientdb-community-3.2.29/lib/spatial4j-0.7.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../../../../../../OrientDB/orientdb-community-3.2.29/lib/truffle-api-21.3.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../../../../../../OrientDB/orientdb-community-3.2.29/lib/txw2-3.0.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
