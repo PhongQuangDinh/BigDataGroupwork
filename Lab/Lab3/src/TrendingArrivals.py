@@ -6,6 +6,8 @@ import pyspark.sql.functions as f
 from pyspark.sql.functions import *
 from pyspark.sql import SparkSession
 from pyspark.sql.types import *
+from pyspark.sql.window import Window
+from pyspark.sql.functions import lag
 
 def main(inputPath, checkpoint_path, output_path):
     spark = SparkSession.builder.master("local")\
@@ -59,53 +61,45 @@ def main(inputPath, checkpoint_path, output_path):
         window(filteredDF.dropoff_datetime, "10 minutes"), filteredDF.headquarters)
         .count()
     )
-    def write_to_output(batch_df, batch_id):
-        # Collect the current batch
-        current_batch = batch_df.collect()
+    def process_batch(batch_df, batch_id):
+        batch_df.persist()
+        goldman_trends = detect_trends(batch_df, "goldman")
+        citigroup_trends = detect_trends(batch_df, "citigroup")
+        goldman_trends.show(truncate=False)
+        citigroup_trends.show(truncate=False)
+        batch_df.unpersist()
 
-        # Load the previous batch if available
-        prev_batch_path = f"{output_path}/previous_batch.parquet"
-        try:
-            prev_batch_df = spark.read.parquet(prev_batch_path)
-            prev_batch = prev_batch_df.collect()
-        except:
-            prev_batch = []
+    def detect_trends(df, headquarters):
+        w = Window.partitionBy("headquarters").orderBy("window")
 
-        # Process the current and previous batches to detect trends
-        for current in current_batch:
-            current_window_start = int(current['window'].start.timestamp() * 1000)
-            current_window_end = int(current['window'].end.timestamp() * 1000)
-            current_headquarters = current['headquarters']
-            current_count = current['count']
+        df = df.filter(col("headquarters") == headquarters)
+        df = df.withColumn("prev_count", lag("count").over(w))
 
-            # Find the corresponding previous interval
-            previous_count = 0
-            for prev in prev_batch:
-                if prev['window'].start == current['window'].start and prev['headquarters'] == current_headquarters:
-                    previous_count = prev['count']
-                    break
+        df = df.filter((col("count") >= 10) & (col("prev_count").isNotNull()))
+        df = df.filter(col("count") >= 2 * col("prev_count"))
 
-            # Check if the trend detection conditions are met
-            if current_count >= 10 and current_count > 2 * previous_count:
-                print(f"The number of arrivals to {current_headquarters} has doubled from {previous_count} to {current_count} at {current_window_start}!")
+        trend_df = df.selectExpr(
+            "headquarters",
+            "count as current_count",
+            "window.start as timestamp",
+            "prev_count"
+        )
 
-                # Write the current batch to output
-                with open(f"{output_path}/part-{current_window_start}.txt", "a") as f:
-                    f.write(f"({current_headquarters},({current_count},{current_window_start},{previous_count}))\n")
+        trend_df.write.mode("append").json(output_path)
 
-        # Save the current batch for the next window
-        batch_df.write.mode('overwrite').parquet(prev_batch_path)
+        return trend_df
+    
     query = (
     streamingCount
         .writeStream
-        .foreachBatch(write_to_output)       
+        .foreachBatch(process_batch)       
         .outputMode("complete")   
         # .option("checkpointlocation", checkpoint_path)
         .start()
     )
-    query.awaitTermination(60)
+    query.awaitTermination()
 
-    query.stop()
+    
     
 if __name__ == "__main__":
     input_path = sys.argv[sys.argv.index("--input") + 1]
