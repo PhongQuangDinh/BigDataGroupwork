@@ -1,41 +1,42 @@
 import os
+import sys
 import findspark
 findspark.init()
-import pyspark
 import pyspark.sql.functions as f
-from pyspark.sql.functions import *
+from pyspark.sql.functions import col, lit, window
 from pyspark.sql import SparkSession
 from pyspark.sql.types import *
-from pyspark.sql.window import Window
 from pyspark.sql.functions import lag
+from pyspark.sql.window import Window as W
 
-def main(inputPath, checkpoint_path, output_path):
+def main(input_path, checkpoint_path, output_path):
     spark = SparkSession.builder.master("local")\
             .appName("Spark Streaming Demonstration")\
             .config("spark.some.config.option", "some-value")\
             .getOrCreate()
     
-    spark.conf.set("spark.sql.shuffle.partitions", "2") 
+    spark.conf.set("spark.sql.shuffle.partitions", "2")
 
     staticInputDF = (
-    spark
-        .read    
-        .csv(inputPath)
+        spark.read.csv(input_path, header=False)
     )
     schema = staticInputDF.schema
 
     streamingInputDF = (
-    spark
-        .readStream
-        .schema(schema)          
-        .csv(inputPath)
+        spark.readStream.schema(schema).csv(input_path, header=False)
     )
 
     yellowRecordsDF = streamingInputDF.filter(f.col('_c0') == 'yellow')
-    yellowRecordsDF = yellowRecordsDF.select(f.col('_c0').alias('Action'),f.col('_c10').alias('dropoff_longitude'), f.col('_c11').alias('dropoff_latitude'), f.col('_c3').alias('dropoff_datetime'))
+    yellowRecordsDF = yellowRecordsDF.select(f.col('_c0').alias('Action'),
+                                             f.col('_c10').alias('dropoff_longitude'),
+                                             f.col('_c11').alias('dropoff_latitude'),
+                                             f.col('_c3').alias('dropoff_datetime'))
 
     greenRecordsDF = streamingInputDF.filter(f.col('_c0') == 'green')
-    greenRecordsDF = greenRecordsDF.select(f.col('_c0').alias('Action'),f.col('_c8').alias('dropoff_longitude'), f.col('_c9').alias('dropoff_latitude'), f.col('_c3').alias('dropoff_datetime'))
+    greenRecordsDF = greenRecordsDF.select(f.col('_c0').alias('Action'),
+                                           f.col('_c8').alias('dropoff_longitude'),
+                                           f.col('_c9').alias('dropoff_latitude'),
+                                           f.col('_c3').alias('dropoff_datetime'))
 
     goldmanCondition = (
         (col("dropoff_longitude") >= -74.0144185) & (col("dropoff_longitude") <= -74.013777) &
@@ -54,23 +55,24 @@ def main(inputPath, checkpoint_path, output_path):
 
     filteredDF = goldmanDF.union(citigroupDF)
 
-    streamingCount = (                 
+    streamingCount = (
         filteredDF
-        .groupBy( 
-        filteredDF.Action,
-        window(filteredDF.dropoff_datetime, "10 minutes"), filteredDF.headquarters)
+        .groupBy(
+            filteredDF.Action,
+            window(filteredDF.dropoff_datetime, "10 minutes"), filteredDF.headquarters)
         .count()
     )
+
     def process_batch(batch_df, batch_id):
         batch_df.persist()
         goldman_trends = detect_trends(batch_df, "goldman")
         citigroup_trends = detect_trends(batch_df, "citigroup")
-        goldman_trends.show(truncate=False)
-        citigroup_trends.show(truncate=False)
+        log_trends(goldman_trends, output_path)
+        log_trends(citigroup_trends, output_path)
         batch_df.unpersist()
 
     def detect_trends(df, headquarters):
-        w = Window.partitionBy("headquarters").orderBy("window")
+        w = W.partitionBy("headquarters").orderBy("window")
 
         df = df.filter(col("headquarters") == headquarters)
         df = df.withColumn("prev_count", lag("count").over(w))
@@ -85,22 +87,23 @@ def main(inputPath, checkpoint_path, output_path):
             "prev_count"
         )
 
-        trend_df.write.mode("append").json(output_path)
-
         return trend_df
-    
-    query = (
-    streamingCount
-        .writeStream
-        .foreachBatch(process_batch)       
-        .outputMode("complete")   
-        # .option("checkpointlocation", checkpoint_path)
-        .start()
-    )
+
+    def log_trends(trend_df, output_path):
+        trends = trend_df.collect()
+        for row in trends:
+            headquarters = row['headquarters']
+            current_count = row['current_count']
+            timestamp = row['timestamp']
+            prev_count = row['prev_count']
+            timestamp_ms = int(timestamp.timestamp() * 1000)
+            log_message = f"({headquarters},({current_count},{timestamp_ms},{prev_count}))"
+            with open(os.path.join(output_path, f"part-{timestamp_ms}"), "a") as log_file:
+                log_file.write(log_message + "\n")
+
+    query = streamingCount.writeStream.foreachBatch(process_batch).outputMode("complete").option("checkpointlocation", checkpoint_path).start()
     query.awaitTermination()
 
-    
-    
 if __name__ == "__main__":
     input_path = sys.argv[sys.argv.index("--input") + 1]
     checkpoint_path = sys.argv[sys.argv.index("--checkpoint") + 1]
